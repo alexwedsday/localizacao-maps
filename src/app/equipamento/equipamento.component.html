@@ -10,8 +10,8 @@
     
     <div class="col-12 md:col-4">
         <h4>Status</h4>
-        <p-selectButton [options]="status" [(ngModel)]="selectedStatus" optionLabel="iStatus" 
-        optionValue="value"></p-selectButton>
+        <p-selectButton [options]="stateOptions" [(ngModel)]="value1" optionLabel="label" optionValue="value" (onChange)="toggle($event.value)"></p-selectButton>
+        
     </div>
     
     <div class="col-12 md:col-4">

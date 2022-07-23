@@ -1,3 +1,3 @@
 export interface IStatusEquipamento {
-    iStatus: string;
+    status: string;
 }

@@ -1,36 +1,48 @@
-import { Component, OnInit } from '@angular/core';
-import { IStatusEquipamento } from './modelo';
+import { Component, OnInit} from '@angular/core';
+import { Equipamento, IEquipamento } from './modelo';
+import { EquipamentoService } from './servico';
 
 @Component({
   selector: 'app-equipamento',
   templateUrl: './equipamento.component.html',
   styleUrls: ['./equipamento.component.scss']
 })
-export class EquipamentoComponent  {
+export class EquipamentoComponent implements OnInit {
 
   stateOptions: any[];
-  selectedStatus!: IStatusEquipamento;
-  equipamento: IStatusEquipamento;
+  public equipamento: Equipamento = new Equipamento(0, '', 0, '');
+  serialNumber:any;
+  equipamentos: Equipamento[] =  [];
   value1: string = "Ativo";
-  value2: number = 58151;
-  value3: number = 58151;
 
-  constructor() {
-    this.equipamento = {status: ''};
-  
+
+  constructor(private service: EquipamentoService) {
+    console.log(this.equipamento);
     this.stateOptions = [
       {label: 'Ativo', value: 1},
       {label: 'Inativo', value: 2}
     ];
    }
+  ngOnInit(): void {
+    this.populateEquipamento();
+    //this.equipamento = this.equipamentos[0];
+    console.log(this.equipamento);
+    
+  }
 
+  public populateEquipamento():void{
+    this.service.listarEquipamentos().subscribe({
+      next: (res:Equipamento[])=>{
+         this.equipamentos = res;
+         this.equipamento  = this.equipamentos[0]; 
+      },
+      error: (error)=> console.error(error),
+      complete: ()=> console.log('completo')});
+  }
    
 
   public toggle(value:number):void{
     this.equipamento.status = this.stateOptions[value - 1].label;
-    console.log(this.equipamento.status);
-    console.log(this.value1);
-    console.log(value);
   }
 
 }

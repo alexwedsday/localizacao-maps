@@ -1,22 +1,21 @@
 <h3>Equipamento</h3>
 <div class="grid p-fluid">
     
-    <div class="col-12 md:col-4">
-        <h4></h4>
-        <label for="withoutgrouping">SerialNumber</label>
-        <p-inputNumber [(ngModel)]="value2" mode="decimal" inputId="withoutgrouping" [useGrouping]="false">
-        </p-inputNumber>
+    <div>
+        <label for="serialNumber" style="display:block; padding-bottom: 0.4rem;">SerialNumber</label>
+        <input id="serialNumber"  style="margin-bottom: 0.4rem;" pInputText  [(ngModel)]="equipamento.serial" />
+    
     </div>
     
-    <div class="col-12 md:col-4">
-        <h4>Status</h4>
-        <p-selectButton [options]="stateOptions" [(ngModel)]="value1" optionLabel="label" optionValue="value" (onChange)="toggle($event.value)"></p-selectButton>
+    <div>
+        <label for="coordenadas"></label>
+        <p-selectButton id="coordenadas" [options]="stateOptions" [(ngModel)]="equipamento.status"  optionLabel="label" optionValue="value" (onChange)="toggle($event.value)"></p-selectButton>
         
     </div>
     
     <div class="col-12 md:col-4">
         <h4>Longitude e Latitude</h4>
-        <p-inputNumber [(ngModel)]="value3" mode="decimal" inputId="withoutgrouping" [useGrouping]="false">
+        <p-inputNumber [(ngModel)]="equipamento.localizacao"   mode="decimal" inputId="withoutgrouping" [useGrouping]="false">
         </p-inputNumber>
     </div>
 </div>

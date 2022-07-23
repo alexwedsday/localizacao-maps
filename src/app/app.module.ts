@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { EquipamentoComponent } from './equipamento';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { HttpClientModule } from '@angular/common/http';
 
 import { FormsModule } from '@angular/forms';
 
@@ -23,7 +24,8 @@ import { FormsModule } from '@angular/forms';
     SelectButtonModule,
     InputNumberModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

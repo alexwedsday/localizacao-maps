@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
-import { Equipamento, IEquipamento } from './modelo';
+import { Localizacao } from '../shared/modelo/localizacao';
+import { Equipamento } from './modelo';
 import { EquipamentoService } from './servico';
 
 @Component({
@@ -10,31 +11,28 @@ import { EquipamentoService } from './servico';
 export class EquipamentoComponent implements OnInit {
 
   stateOptions: any[];
-  public equipamento: Equipamento = new Equipamento(0, '', 0, '');
+  public equipamento: Equipamento = {id: 0 , serial: '', localizacao: {id: 0, id_equipamentos: 0 ,latitude: 0, longitude: 0}, status: ''};
   serialNumber:any;
   equipamentos: Equipamento[] =  [];
   value1: string = "Ativo";
 
 
   constructor(private service: EquipamentoService) {
-    console.log(this.equipamento);
     this.stateOptions = [
       {label: 'Ativo', value: 1},
       {label: 'Inativo', value: 2}
     ];
    }
-  ngOnInit(): void {
+  ngOnInit():void {
     this.populateEquipamento();
-    //this.equipamento = this.equipamentos[0];
-    console.log(this.equipamento);
-    
   }
 
   public populateEquipamento():void{
     this.service.listarEquipamentos().subscribe({
-      next: (res:Equipamento[])=>{
-         this.equipamentos = res;
-         this.equipamento  = this.equipamentos[0]; 
+      next: async (res:Equipamento[])=>{
+         this.equipamentos = await res;
+         this.equipamento  =  this.equipamentos[0]; 
+         this.equipamento = await this.addLocalizacao(this.equipamento);
       },
       error: (error)=> console.error(error),
       complete: ()=> console.log('completo')});
@@ -43,6 +41,13 @@ export class EquipamentoComponent implements OnInit {
 
   public toggle(value:number):void{
     this.equipamento.status = this.stateOptions[value - 1].label;
+  }
+
+  public addLocalizacao(equipamento: Equipamento):Equipamento{
+    this.service.buscarLocalizacao(equipamento.id).subscribe((localizacao:Localizacao)=>{
+      equipamento.localizacao = localizacao;
+    });
+   return equipamento;
   }
 
 }

@@ -10,6 +10,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { HttpClientModule } from '@angular/common/http';
 
 import { FormsModule } from '@angular/forms';
+import { LocalizacaoService } from './shared/servico/localizacao.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [LocalizacaoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

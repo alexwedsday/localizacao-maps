@@ -1,6 +1,8 @@
+import { Localizacao } from "src/app/shared/modelo/localizacao";
+
 export interface IEquipamento {
     id: number;
     serial: string;
-    localizacao: number;
+    localizacao: Localizacao;
     status: string;
 }

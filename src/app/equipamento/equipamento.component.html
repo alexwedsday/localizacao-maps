@@ -1,27 +1,21 @@
-
 <div class="card">
     <h3>Equipamento</h3>
     <div class="form-grid grid">
         <div class="field col-12 md:col-6">
             <label for="serialNumber">SerialNumber</label>
             <input id="serialNumber"  class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" pInputText  [(ngModel)]="equipamento.serial" />
-        
         </div>
-        
         <div class="field col-12 md:col-6">
             <label for="coordenadas"></label>
             <p-selectButton id="coordenadas" styleClass="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round  outline-none focus:border-primary w-full" [options]="stateOptions" [(ngModel)]="equipamento.status"  optionLabel="label" optionValue="value" (onChange)="toggle($event.value)"></p-selectButton>
-            
         </div>
-        
         <div class="field md:col-6">
             <h4>Longitude</h4>
-            <input type="number" class="inputClass text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round  outline-none focus:border-primary w-full"  [(ngModel)]="equipamento.localizacao"  pattern="^[-\d]\d*$" step="1" />
-            
+            <input type="number" class="inputClass text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round  outline-none focus:border-primary w-full"  [(ngModel)]="equipamento.localizacao.longitude"  pattern="^[-\d]\d*$" step="1" /> 
         </div>
         <div class="field md:col-6">
             <h4>Latitude</h4>
-            <input type="number" class="w-full text-base text-color surface-overlay  p-2 border-1 border-solid surface-border border-round  outline-none focus:border-primary"  pattern="^[-/d]/d*$"  step="1" />
+            <input type="number" class="w-full text-base text-color surface-overlay  p-2 border-1 border-solid surface-border border-round  outline-none focus:border-primary"  pattern="^[-/d]/d*$"  step="1" [(ngModel)]="equipamento.localizacao.longitude"  />
         </div>
     </div>
 </div>

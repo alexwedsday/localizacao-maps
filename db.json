@@ -16,13 +16,14 @@
         {
             "id": 1,
             "serial": "RI234GXVRG0001",
-            "localizacao": 1,
+            "localizacao": {},
             "status": ""
         }
     ],
     "localizacoes":[
         {
             "id": 1,
+            "id_equipamentos": 1,
             "latitude": -26.209182867576803,
             "longitude" : -52.691866093988175
 

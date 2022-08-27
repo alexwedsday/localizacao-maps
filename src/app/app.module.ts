@@ -8,16 +8,20 @@ import { EquipamentoComponent } from './equipamento';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { HttpClientModule } from '@angular/common/http';
-
+import {ToolbarModule} from 'primeng/toolbar';
 import { FormsModule } from '@angular/forms';
 import { LocalizacaoService } from './shared/servico/localizacao.service';
+import { AddEquipamentoComponent } from './equipamento/add-equipamento/add-equipamento.component';
+import {TableModule} from 'primeng/table';
+
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
-    EquipamentoComponent
-    
-  ],
+    EquipamentoComponent,
+    AddEquipamentoComponent,
+      
+   ],
   imports: [
     BrowserModule,
     ButtonModule,
@@ -25,6 +29,8 @@ import { LocalizacaoService } from './shared/servico/localizacao.service';
     SelectButtonModule,
     InputNumberModule,
     FormsModule,
+    ToolbarModule,
+    TableModule,
     AppRoutingModule,
     HttpClientModule
   ],

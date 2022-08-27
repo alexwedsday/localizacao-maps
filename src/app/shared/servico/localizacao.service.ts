@@ -16,4 +16,9 @@ public buscarPorId(id:number):Observable<Localizacao>{
   return this.http.get<Localizacao>(this.URL + `${id}`);
 }
 
+public salvar(localizacao:Localizacao):Observable<Localizacao>{
+  return this.http.post<Localizacao>(this.URL, localizacao);
+}
+
+
 }

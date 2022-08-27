@@ -9,6 +9,7 @@ import { Localizacao } from 'src/app/shared/modelo/localizacao';
   providedIn: 'root',
 })
 export class EquipamentoService {
+ 
   readonly URL: string = 'http://localhost:3000/equipamentos';
 
   constructor(
@@ -23,5 +24,20 @@ export class EquipamentoService {
   public buscarLocalizacao(id: number): Observable<Localizacao> {
     return this.localizacaoService.buscarPorId(id);
   }
+
+  public save(equipamento: Equipamento):Observable<Equipamento> {
+    return this.http.post<Equipamento>(this.URL, equipamento);
+  }
+
+  public saveLocation(localizacao:Localizacao):Observable<Localizacao>{
+    return this.localizacaoService.salvar(localizacao);
+  }
+
+  
+  public edit(equipamento: Equipamento):Observable<Equipamento> {
+    return this.http.put<Equipamento>(this.URL + `/${equipamento.id}`, equipamento);
+  }
+
+   
   
 }

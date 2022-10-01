@@ -1,4 +1,4 @@
-<div>
+<div class="container">
     <p-toolbar styleClass="w-full">
         <ng-template pTemplate="left" >
             <button pButton pRipple label="Novo Equipamento" icon="pi pi-plus" class="p-button-success mr-2" (click)="goToAdd()"></button>
@@ -9,7 +9,8 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Serial</th>
-                <th scope="col">Localização</th>
+                <th scope="col">Latitude</th>
+                <th scope="col">Longitude</th>
                 <th scope="col">Status</th>
             </tr>
         </ng-template>
@@ -17,9 +18,11 @@
             <tr>
                 <td>{{equipamento?.id}}</td>
                 <td>{{equipamento?.serial}}</td>
-                <td>{{equipamento?.localizacao?.latitude}} - {{equipamento?.localizacao?.longitude}}</td>
+                <td>{{equipamento?.localization?.latitude}}</td>
+                <td>{{equipamento?.localization?.longitude}}</td>
                 <td>{{equipamento?.status}}</td>
             </tr>
         </ng-template>
     </p-table>
+    <app-gmaps *ngIf="loadMap" [equipamentos]="equipamentos"></app-gmaps>
 </div>

@@ -14,6 +14,8 @@
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
+    
+      
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
@@ -73,10 +75,14 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "localizacao-maps:build:production"
+              "browserTarget": "localizacao-maps:build:production",
+              "proxyConfig": "proxy.conf.json"
+              
             },
             "development": {
-              "browserTarget": "localizacao-maps:build:development"
+              "browserTarget": "localizacao-maps:build:development",
+              "proxyConfig": "proxy.conf.json"
+
             }
           },
           "defaultConfiguration": "development"

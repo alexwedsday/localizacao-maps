@@ -12,7 +12,9 @@ import {ToolbarModule} from 'primeng/toolbar';
 import { FormsModule } from '@angular/forms';
 import { LocalizacaoService } from './shared/servico/localizacao.service';
 import { AddEquipamentoComponent } from './equipamento/add-equipamento/add-equipamento.component';
+import {GMapModule} from 'primeng/gmap'
 import {TableModule} from 'primeng/table';
+import { GmapsComponent } from './equipamento/gmaps/gmaps.component';
 
 
 @NgModule({
@@ -20,6 +22,7 @@ import {TableModule} from 'primeng/table';
     AppComponent,
     EquipamentoComponent,
     AddEquipamentoComponent,
+    GmapsComponent
       
    ],
   imports: [
@@ -31,6 +34,7 @@ import {TableModule} from 'primeng/table';
     FormsModule,
     ToolbarModule,
     TableModule,
+    GMapModule,
     AppRoutingModule,
     HttpClientModule
   ],

@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-
-import { Localizacao } from 'src/app/shared/modelo/localizacao';
 import { Equipamento } from '../modelo';
 import { EquipamentoService } from '../servico';
 
@@ -16,8 +13,8 @@ export class AddEquipamentoComponent implements OnInit {
   public equipamento: Equipamento = {
     id: 0,
     serial: '',
-    localizacoes: { id: 0,  id_equipamentos: 0, latitude: 0, longitude: 0 },
-    status: '',
+    localization: { id: 0, latitude: 0, longitude: 0 },
+    status: false,
   };
   serialNumber: any;
   equipamentos: Equipamento[] = [];
@@ -25,36 +22,19 @@ export class AddEquipamentoComponent implements OnInit {
 
   constructor(private service: EquipamentoService, private router:Router) {
     this.stateOptions = [
-      { label: 'Ativo', value: 1 },
-      { label: 'Inativo', value: 2 },
+      { label: 'Ativo', value: 0 },
+      { label: 'Inativo', value: 1 },
     ];
   }
   ngOnInit(): void {}
 
-  public populateEquipamento(): void {
-    this.service.listarEquipamentos().subscribe({
-      next: async (res: Equipamento[]) => {
-        this.equipamentos = await res;
-        this.equipamento = this.equipamentos[0];
-        this.equipamento = await this.addLocalizacao(this.equipamento);
-      },
-      error: (error) => console.error(error),
-      complete: () => console.log('completo'),
-    });
-  }
+ 
 
   public toggle(value: number): void {
-    this.equipamento.status = this.stateOptions[value - 1].label;
+    this.equipamento.status = (value === 0);
   }
 
-  public addLocalizacao(equipamento: Equipamento): Equipamento {
-    this.service
-      .buscarLocalizacao(equipamento.id)
-      .subscribe((localizacao: Localizacao) => {
-        equipamento.localizacoes = localizacao;
-      });
-    return equipamento;
-  }
+
   public goToList():void{
      this.router.navigate(['..'])
   }
@@ -63,7 +43,10 @@ export class AddEquipamentoComponent implements OnInit {
     console.log(this.equipamento);
     this.service.save(this.equipamento).subscribe(
       {
-        next:(response) => this.equipamento = response,
+        next:(response) => {
+          this.equipamento = response
+          this.router.navigate(['..']);
+        },
         error:(error)=>console.error(error), 
     
       }
@@ -74,8 +57,8 @@ export class AddEquipamentoComponent implements OnInit {
     this.equipamento = {
       id: 0,
       serial: '',
-      localizacoes: { id: 0, id_equipamentos: 0, latitude: 0, longitude: 0 },
-      status: '',
+      localization: { id: 0, latitude: 0, longitude: 0 },
+      status: false,
     };
   }
 }

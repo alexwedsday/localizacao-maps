@@ -14,7 +14,7 @@ export class EquipamentoComponent implements OnInit {
   equipamentos: Equipamento[] = [];
   loadMap:boolean = false;
   
-  constructor(private router: Router, private servico: EquipamentoService) {
+  constructor(public router: Router, public servico: EquipamentoService) {
     this.populateEquipamento();
   }
 
@@ -30,7 +30,7 @@ export class EquipamentoComponent implements OnInit {
 
   
 
-  public populateEquipamento() {
+  public populateEquipamento():void {
     this.servico.listarEquipamentos().subscribe({
       next: (response: Equipamento[]) => {
         this.equipamentos = response;

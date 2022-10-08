@@ -14,8 +14,6 @@
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
-    
-      
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
@@ -33,7 +31,7 @@
               "src/styles.scss",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeflex/primeflex.css",
-              "node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css", 
+              "node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": []
@@ -77,12 +75,10 @@
             "production": {
               "browserTarget": "localizacao-maps:build:production",
               "proxyConfig": "proxy.conf.json"
-              
             },
             "development": {
               "browserTarget": "localizacao-maps:build:development",
               "proxyConfig": "proxy.conf.json"
-
             }
           },
           "defaultConfiguration": "development"
@@ -109,10 +105,55 @@
               "src/styles.scss",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeflex/primeflex.css",
-              "node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css", 
+              "node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": []
+          }
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "localizacao-maps:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "localizacao-maps:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "watch": true,
+            "headless": false
+          }
+        },
+        "ct": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "localizacao-maps:serve",
+            "watch": true,
+            "headless": false,
+            "testingType": "component"
+          },
+          "configurations": {
+            "development": {
+              "devServerTarget": "localizacao-maps:serve:development"
+            }
+          }
+        },
+        "e2e": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "localizacao-maps:serve",
+            "watch": true,
+            "headless": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "localizacao-maps:serve:production"
+            }
           }
         }
       }
